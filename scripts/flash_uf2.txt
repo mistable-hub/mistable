@@ -1,0 +1,4 @@
+1) Hold BOOTSEL while plugging in PRIMARY USB-C.
+2) Wait for USB mass-storage device to appear.
+3) Copy build/mistable_phase1.uf2 to the mounted drive.
+4) Device reboots and starts firmware.

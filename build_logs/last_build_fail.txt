@@ -1,0 +1,60 @@
+OK: assets verified
+INFO: ninja not found, using Unix Makefiles fallback
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- The ASM compiler identification is GNU
+-- Found assembler: /usr/bin/cc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.9s)
+-- Generating done (0.0s)
+-- Build files have been written to: /workspaces/mistable/build
+/usr/bin/cmake -S/workspaces/mistable -B/workspaces/mistable/build --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /workspaces/mistable/build/CMakeFiles /workspaces/mistable/build//CMakeFiles/progress.marks
+make  -f CMakeFiles/Makefile2 all
+make[1]: Entering directory '/workspaces/mistable/build'
+make  -f CMakeFiles/freertos_kernel.dir/build.make CMakeFiles/freertos_kernel.dir/depend
+make  -f CMakeFiles/fatfs.dir/build.make CMakeFiles/fatfs.dir/depend
+make[2]: Entering directory '/workspaces/mistable/build'
+cd /workspaces/mistable/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /workspaces/mistable /workspaces/mistable /workspaces/mistable/build /workspaces/mistable/build /workspaces/mistable/build/CMakeFiles/freertos_kernel.dir/DependInfo.cmake "--color="
+make[2]: Entering directory '/workspaces/mistable/build'
+cd /workspaces/mistable/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /workspaces/mistable /workspaces/mistable /workspaces/mistable/build /workspaces/mistable/build /workspaces/mistable/build/CMakeFiles/fatfs.dir/DependInfo.cmake "--color="
+make[2]: Leaving directory '/workspaces/mistable/build'
+make  -f CMakeFiles/freertos_kernel.dir/build.make CMakeFiles/freertos_kernel.dir/build
+make[2]: Leaving directory '/workspaces/mistable/build'
+make  -f CMakeFiles/fatfs.dir/build.make CMakeFiles/fatfs.dir/build
+make[2]: Entering directory '/workspaces/mistable/build'
+make[2]: Entering directory '/workspaces/mistable/build'
+[  4%] Building C object CMakeFiles/freertos_kernel.dir/third_party/FreeRTOS-Kernel/tasks.c.o
+/usr/bin/cc  -I/workspaces/mistable/src -I/workspaces/mistable/third_party/FreeRTOS-Kernel/include -std=gnu11 -MD -MT CMakeFiles/freertos_kernel.dir/third_party/FreeRTOS-Kernel/tasks.c.o -MF CMakeFiles/freertos_kernel.dir/third_party/FreeRTOS-Kernel/tasks.c.o.d -o CMakeFiles/freertos_kernel.dir/third_party/FreeRTOS-Kernel/tasks.c.o -c /workspaces/mistable/third_party/FreeRTOS-Kernel/tasks.c
+[  9%] Building C object CMakeFiles/fatfs.dir/third_party/FatFS/source/ff.c.o
+/usr/bin/cc  -I/workspaces/mistable/src/storage -I/workspaces/mistable/third_party/FatFS/source -std=gnu11 -MD -MT CMakeFiles/fatfs.dir/third_party/FatFS/source/ff.c.o -MF CMakeFiles/fatfs.dir/third_party/FatFS/source/ff.c.o.d -o CMakeFiles/fatfs.dir/third_party/FatFS/source/ff.c.o -c /workspaces/mistable/third_party/FatFS/source/ff.c
+[ 13%] Linking C static library libfreertos_kernel.a
+/usr/bin/cmake -P CMakeFiles/freertos_kernel.dir/cmake_clean_target.cmake
+[ 18%] Linking C static library libfatfs.a
+/usr/bin/cmake -P CMakeFiles/fatfs.dir/cmake_clean_target.cmake
+/usr/bin/cmake -E cmake_link_script CMakeFiles/freertos_kernel.dir/link.txt --verbose=1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/fatfs.dir/link.txt --verbose=1
+/usr/bin/ar qc libfatfs.a CMakeFiles/fatfs.dir/third_party/FatFS/source/ff.c.o
+/usr/bin/ar qc libfreertos_kernel.a "CMakeFiles/freertos_kernel.dir/third_party/FreeRTOS-Kernel/tasks.c.o"
+/usr/bin/ranlib libfatfs.a
+/usr/bin/ranlib libfreertos_kernel.a
+make[2]: Leaving directory '/workspaces/mistable/build'
+[ 18%] Built target fatfs
+make[2]: Leaving directory '/workspaces/mistable/build'
+[ 18%] Built target freertos_kernel
+make  -f CMakeFiles/mistable_phase1.dir/build.make CMakeFiles/mistable_phase1.dir/depend
+make[2]: Entering directory '/workspaces/mistable/build'
+CMakeFiles/mistable_phase1.dir/build.make:76: *** missing separator.  Stop.
+make[2]: Leaving directory '/workspaces/mistable/build'
+make[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/mistable_phase1.dir/all] Error 2
+make[1]: Leaving directory '/workspaces/mistable/build'
+make: *** [Makefile:91: all] Error 2
