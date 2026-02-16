@@ -1,0 +1,4 @@
+.program piousb_host
+.wrap_target
+    nop
+.wrap
