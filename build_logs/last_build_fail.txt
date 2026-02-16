@@ -1,0 +1,8 @@
+CMake Error at third_party/pico-sdk/cmake/pico_sdk_init.cmake:7 (add_subdirectory):
+  add_subdirectory given source "/workspaces/mistable/../src" which is not an
+  existing directory.
+Call Stack (most recent call first):
+  CMakeLists.txt:15 (pico_sdk_init)
+
+
+-- Configuring incomplete, errors occurred!
