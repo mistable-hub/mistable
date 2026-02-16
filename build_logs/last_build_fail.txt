@@ -1,8 +1,8 @@
-CMake Error at pico_sdk_import.cmake:22 (message):
-  Pico SDK not found at /workspaces/mistable/third_party/pico-sdk; run git
-  submodule update --init --recursive
+CMake Error at third_party/pico-sdk/cmake/pico_sdk_init.cmake:7 (add_subdirectory):
+  add_subdirectory given source "/workspaces/mistable/../src" which is not an
+  existing directory.
 Call Stack (most recent call first):
-  CMakeLists.txt:3 (include)
+  CMakeLists.txt:15 (pico_sdk_init)
 
 
 -- Configuring incomplete, errors occurred!

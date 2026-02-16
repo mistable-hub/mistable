@@ -1,5 +1,6 @@
 #include "FreeRTOS.h"
 #include "task.h"
+#include "pico/stdlib.h"
 
 #include "board_pins.h"
 #include "log.h"

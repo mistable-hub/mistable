@@ -13,9 +13,8 @@ RP2350-PiZero appliance layer firmware skeleton for:
 - FatFS path: (a) Pico SDK integration.
 
 ## Pinned submodule SHAs
-Run these after submodules are initialized:
-- `git -C third_party/pico-sdk rev-parse HEAD`
-- `git -C third_party/FreeRTOS-Kernel rev-parse HEAD`
+- Pico SDK: `f9478e67602c38f3d1ef2a9de70664d12295e114`
+- FreeRTOS-Kernel: `c9aae9da104b11f3c5e55c5b5e8ede052f51238f`
 
 ## Board
 Build uses `-DPICO_BOARD=waveshare_rp2350_pizero`.
@@ -23,9 +22,10 @@ Build uses `-DPICO_BOARD=waveshare_rp2350_pizero`.
 ## Build
 ```bash
 mkdir -p build && cd build
-cmake .. -G Ninja -DPICO_BOARD=waveshare_rp2350_pizero
+cmake .. -G Ninja
 ninja
 ```
+The helper script uses `-DPICO_BOARD=waveshare_rp2350_pizero`.
 
 ## Flash UF2
 1. Hold BOOTSEL while connecting the board.

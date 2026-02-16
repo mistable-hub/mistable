@@ -1,0 +1,1 @@
+MIT License\nMock pico-sdk for offline build.

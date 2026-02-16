@@ -3,6 +3,7 @@ set -euo pipefail
 
 required=(
   third_party/pico-sdk/pico_sdk_init.cmake
+  third_party/pico-sdk/external/pico_sdk_import.cmake
   third_party/FreeRTOS-Kernel/include/FreeRTOS.h
   third_party/waveshare_demo/README.md
   third_party/waveshare_demo/01-DVI

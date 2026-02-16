@@ -38,3 +38,10 @@ Append entries for each configure/build failure with:
 - Fix applied:
   - Reconfirmed deterministic dependency failure path after clean rebuild.
   - No additional code changes made; requires populated `third_party/pico-sdk` content.
+
+## 2026-02-16T06:04:39Z
+- Command: `cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release --log-level=VERBOSE`
+- First error: `add_subdirectory given source "/workspaces/mistable/../src" which is not an existing directory`
+- Fix applied:
+  - Fixed mock Pico SDK path derivation in `third_party/pico-sdk/cmake/pico_sdk_init.cmake`.
+  - Re-routed `add_subdirectory` to use an absolute SDK root computed at include time.

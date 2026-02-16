@@ -14,6 +14,14 @@ set(PICO_BOARD_HEADER_DIRS ${CMAKE_CURRENT_LIST_DIR}/cmake/boards)
 
 pico_sdk_init()
 
+add_library(freertos_kernel STATIC
+  third_party/FreeRTOS-Kernel/tasks.c
+  third_party/FreeRTOS-Kernel/portable/MemMang/heap_4.c
+)
+target_include_directories(freertos_kernel PUBLIC
+  ${CMAKE_CURRENT_LIST_DIR}/third_party/FreeRTOS-Kernel/include
+)
+
 add_executable(mistable_phase1
   src/main.c
   src/log.c
@@ -48,6 +56,7 @@ target_compile_definitions(mistable_phase1 PRIVATE
 )
 
 target_link_libraries(mistable_phase1
+  freertos_kernel
   pico_stdlib
   pico_multicore
   hardware_pio
