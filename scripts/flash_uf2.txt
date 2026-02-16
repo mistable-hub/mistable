@@ -1,0 +1,3 @@
+1) Hold BOOTSEL while connecting the RP2350-PiZero via USB.
+2) The board will mount as a mass storage device.
+3) Copy build/mistable_phase1.uf2 to the device.

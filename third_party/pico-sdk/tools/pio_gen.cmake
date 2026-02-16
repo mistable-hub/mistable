@@ -1,0 +1,7 @@
+if (NOT DEFINED OUT)
+  message(FATAL_ERROR "OUT not set")
+endif()
+if (NOT DEFINED NAME)
+  message(FATAL_ERROR "NAME not set")
+endif()
+file(WRITE "${OUT}" "// Generated stub for ${NAME}\n#ifndef PIO_STUB_${NAME}\n#define PIO_STUB_${NAME}\nstatic const unsigned int ${NAME}_program_instructions[] = {0};\nstatic const unsigned int ${NAME}_program_length = 1;\n#endif\n")
