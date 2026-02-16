@@ -1,0 +1,4 @@
+1) Hold BOOTSEL while plugging in the board.
+2) A USB mass-storage device appears.
+3) Copy build/mistable_phase1.uf2 to that device.
+4) Device reboots and runs firmware.

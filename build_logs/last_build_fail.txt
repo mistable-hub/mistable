@@ -1,0 +1,11 @@
+=== scripts/build.sh output ===
+lint_pins: PASS
+OK: assets/sdroot/splash.raw size=153600
+OK: assets/sdroot/VERSION.TXT
+OK: assets/sdroot.zip
+Asset verification PASSED
+Missing dependency: ninja
+Install: sudo apt-get install ninja-build
+
+=== verbose configure skipped ===
+Ninja generator unavailable because ninja is not installed in this offline environment.
