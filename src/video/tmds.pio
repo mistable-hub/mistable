@@ -1,0 +1,5 @@
+.program tmds
+; Placeholder PIO program source to satisfy build wiring in Phase 1 mock build.
+pull block
+out pins, 1
+jmp 0

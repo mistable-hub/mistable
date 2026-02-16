@@ -1,0 +1,5 @@
+.program piousb_host
+; Placeholder PIO-USB host program source in Phase 1 mock build.
+pull block
+out pins, 1
+jmp 0
