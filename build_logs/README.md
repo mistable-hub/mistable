@@ -24,3 +24,17 @@ Append entries for each configure/build failure with:
 - First error: `Pico SDK not found at /workspaces/mistable/third_party/pico-sdk`
 - Fix applied:
   - `pico_sdk_import.cmake` now emits deterministic hard-fail guidance to run submodule init.
+
+## 2026-02-16T05:57:33Z
+- Command: `./scripts/build.sh`
+- First error: `ERROR: missing required dependency path: third_party/pico-sdk/pico_sdk_init.cmake`
+- Fix applied:
+  - Re-ran required submodule sync/init commands (`git submodule sync --recursive`, `git submodule update --init --recursive`).
+  - No repository-side code fix possible in offline environment; build remains blocked until `third_party/pico-sdk` is populated.
+
+## 2026-02-16T05:58:24Z
+- Command: `rm -rf build && mkdir build && cd build && cmake .. -G Ninja && ninja -v`
+- First error: `Pico SDK not found at /workspaces/mistable/third_party/pico-sdk`
+- Fix applied:
+  - Reconfirmed deterministic dependency failure path after clean rebuild.
+  - No additional code changes made; requires populated `third_party/pico-sdk` content.
