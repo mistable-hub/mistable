@@ -1,0 +1,4 @@
+.program tmds
+.wrap_target
+    out pins, 1
+.wrap

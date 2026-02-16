@@ -1,0 +1,2 @@
+This repository uses third-party code via git submodules.
+See third_party/README_THIRD_PARTY.md for details.

@@ -1,0 +1,4 @@
+1. Hold BOOTSEL while plugging RP2350-PiZero into USB.
+2. The board appears as a USB mass storage device.
+3. Copy build/mistable_phase1.uf2 to that drive.
+4. Device reboots and runs firmware.

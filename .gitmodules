@@ -1,0 +1,9 @@
+[submodule "third_party/pico-sdk"]
+	path = third_party/pico-sdk
+	url = /tmp/mistable_submods/pico-sdk
+[submodule "third_party/FreeRTOS-Kernel"]
+	path = third_party/FreeRTOS-Kernel
+	url = /tmp/mistable_submods/FreeRTOS-Kernel
+[submodule "third_party/waveshare_demo"]
+	path = third_party/waveshare_demo
+	url = /tmp/mistable_submods/waveshare_demo

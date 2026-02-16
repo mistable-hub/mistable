@@ -1,0 +1,8 @@
+if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/third_party/pico-sdk/cmake/pico_sdk_init.cmake")
+  set(PICO_SDK_PATH "${CMAKE_CURRENT_LIST_DIR}/third_party/pico-sdk")
+elseif(DEFINED ENV{PICO_SDK_PATH})
+  set(PICO_SDK_PATH "$ENV{PICO_SDK_PATH}")
+else()
+  message(FATAL_ERROR "Pico SDK not found. Initialize submodules or set PICO_SDK_PATH")
+endif()
+include(${PICO_SDK_PATH}/cmake/pico_sdk_init.cmake)

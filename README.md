@@ -1,20 +1,39 @@
-# mistable
+# mistable Phase 1 RP2350-PiZero Appliance Layer
 
-Phase 0 minimal spine. This builds and runs a Verilator simulation that emits a single frame image.
+Board name used for build: `waveshare_rp2350_pizero`
 
-## Run on Host
+DVI/TMDS dependency path: S4(a) Waveshare baseline from `third_party/waveshare_demo/01-DVI`
+USB host baseline path: `third_party/waveshare_demo/PIO-USB`
+FatFS path: Pico SDK integration path (project-side ff_port shim for mount/read flow)
 
-```bash
-./scripts/test.sh
-```
-
-## Run via Docker
+## Build
 
 ```bash
-docker build -t mistable-dev -f container/Dockerfile .
-docker run --rm -it -v "$PWD:/work" -w /work mistable-dev ./scripts/test.sh
+mkdir -p build && cd build
+cmake .. -G Ninja
+ninja
 ```
 
-## Output Artifact
+Or run the enforced pipeline:
 
-The simulation produces `build/frame.ppm`, a binary PPM (P6) image containing a deterministic test pattern.
+```bash
+./scripts/build.sh
+```
+
+## Flash
+
+- Enter BOOTSEL mode on RP2350-PiZero.
+- Copy `build/mistable_phase1.uf2` to the mounted mass-storage device.
+- See `scripts/flash_uf2.txt`.
+
+## Submodules
+
+```text
+ c9aae9da104b11f3c5e55c5b5e8ede052f51238f third_party/FreeRTOS-Kernel (heads/main)
+ f9478e67602c38f3d1ef2a9de70664d12295e114 third_party/pico-sdk (heads/main)
+ a659bc5b6145b2ecded5f3652163b6e05717fa98 third_party/waveshare_demo (heads/main)
+```
+
+Pico SDK SHA: `f9478e67602c38f3d1ef2a9de70664d12295e114`
+FreeRTOS-Kernel SHA: `c9aae9da104b11f3c5e55c5b5e8ede052f51238f`
+Waveshare demo SHA: `a659bc5b6145b2ecded5f3652163b6e05717fa98`

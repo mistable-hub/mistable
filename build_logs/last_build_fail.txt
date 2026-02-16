@@ -1,0 +1,65 @@
+/usr/bin/cmake -S/workspaces/mistable -B/workspaces/mistable/build --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /workspaces/mistable/build/CMakeFiles /workspaces/mistable/build//CMakeFiles/progress.marks
+make  -f CMakeFiles/Makefile2 all
+make[1]: Entering directory '/workspaces/mistable/build'
+make  -f CMakeFiles/freertos_kernel.dir/build.make CMakeFiles/freertos_kernel.dir/depend
+make  -f third_party/pico-sdk/src/common/pico_stdlib/CMakeFiles/pico_stdlib.dir/build.make third_party/pico-sdk/src/common/pico_stdlib/CMakeFiles/pico_stdlib.dir/depend
+make[2]: Entering directory '/workspaces/mistable/build'
+cd /workspaces/mistable/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /workspaces/mistable /workspaces/mistable /workspaces/mistable/build /workspaces/mistable/build /workspaces/mistable/build/CMakeFiles/freertos_kernel.dir/DependInfo.cmake "--color="
+make[2]: Entering directory '/workspaces/mistable/build'
+cd /workspaces/mistable/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /workspaces/mistable /workspaces/mistable/third_party/pico-sdk/src/common/pico_stdlib /workspaces/mistable/build /workspaces/mistable/build/third_party/pico-sdk/src/common/pico_stdlib /workspaces/mistable/build/third_party/pico-sdk/src/common/pico_stdlib/CMakeFiles/pico_stdlib.dir/DependInfo.cmake "--color="
+Dependencies file "CMakeFiles/freertos_kernel.dir/third_party/FreeRTOS-Kernel/portable/MemMang/heap_4.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/freertos_kernel.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/freertos_kernel.dir/third_party/FreeRTOS-Kernel/tasks.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/freertos_kernel.dir/compiler_depend.internal".
+Consolidate compiler generated dependencies of target freertos_kernel
+make[2]: Leaving directory '/workspaces/mistable/build'
+make  -f CMakeFiles/freertos_kernel.dir/build.make CMakeFiles/freertos_kernel.dir/build
+make[2]: Entering directory '/workspaces/mistable/build'
+make[2]: Nothing to be done for 'CMakeFiles/freertos_kernel.dir/build'.
+make[2]: Leaving directory '/workspaces/mistable/build'
+[ 13%] Built target freertos_kernel
+make  -f third_party/pico-sdk/src/CMakeFiles/hardware_spi.dir/build.make third_party/pico-sdk/src/CMakeFiles/hardware_spi.dir/depend
+make[2]: Entering directory '/workspaces/mistable/build'
+cd /workspaces/mistable/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /workspaces/mistable /workspaces/mistable/third_party/pico-sdk/src /workspaces/mistable/build /workspaces/mistable/build/third_party/pico-sdk/src /workspaces/mistable/build/third_party/pico-sdk/src/CMakeFiles/hardware_spi.dir/DependInfo.cmake "--color="
+Dependencies file "third_party/pico-sdk/src/common/pico_stdlib/CMakeFiles/pico_stdlib.dir/stdlib.c.o.d" is newer than depends file "/workspaces/mistable/build/third_party/pico-sdk/src/common/pico_stdlib/CMakeFiles/pico_stdlib.dir/compiler_depend.internal".
+Consolidate compiler generated dependencies of target pico_stdlib
+make[2]: Leaving directory '/workspaces/mistable/build'
+make  -f third_party/pico-sdk/src/common/pico_stdlib/CMakeFiles/pico_stdlib.dir/build.make third_party/pico-sdk/src/common/pico_stdlib/CMakeFiles/pico_stdlib.dir/build
+Dependencies file "third_party/pico-sdk/src/CMakeFiles/hardware_spi.dir/spi.c.o.d" is newer than depends file "/workspaces/mistable/build/third_party/pico-sdk/src/CMakeFiles/hardware_spi.dir/compiler_depend.internal".
+Consolidate compiler generated dependencies of target hardware_spi
+make[2]: Entering directory '/workspaces/mistable/build'
+make[2]: Nothing to be done for 'third_party/pico-sdk/src/common/pico_stdlib/CMakeFiles/pico_stdlib.dir/build'.
+make[2]: Leaving directory '/workspaces/mistable/build'
+make[2]: Leaving directory '/workspaces/mistable/build'
+make  -f third_party/pico-sdk/src/CMakeFiles/hardware_spi.dir/build.make third_party/pico-sdk/src/CMakeFiles/hardware_spi.dir/build
+make[2]: Entering directory '/workspaces/mistable/build'
+make[2]: Nothing to be done for 'third_party/pico-sdk/src/CMakeFiles/hardware_spi.dir/build'.
+make[2]: Leaving directory '/workspaces/mistable/build'
+[ 21%] Built target pico_stdlib
+[ 30%] Built target hardware_spi
+make  -f CMakeFiles/mistable_phase1.dir/build.make CMakeFiles/mistable_phase1.dir/depend
+make[2]: Entering directory '/workspaces/mistable/build'
+cd /workspaces/mistable/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /workspaces/mistable /workspaces/mistable /workspaces/mistable/build /workspaces/mistable/build /workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/DependInfo.cmake "--color="
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/log.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/main.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/status.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/storage/ff_port.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/storage/sd_spi.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/storage/splash.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/usb/hid_keyboard.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/usb/usb_device_cdc.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/usb/usb_host_piousb.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/video/font8x8.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/video/osd.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/video/patterns.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/video/scale.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/video/tmds_pio.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Dependencies file "CMakeFiles/mistable_phase1.dir/src/video/video_engine.c.o.d" is newer than depends file "/workspaces/mistable/build/CMakeFiles/mistable_phase1.dir/compiler_depend.internal".
+Consolidate compiler generated dependencies of target mistable_phase1
+make[2]: Leaving directory '/workspaces/mistable/build'
+make  -f CMakeFiles/mistable_phase1.dir/build.make CMakeFiles/mistable_phase1.dir/build
+make[2]: Entering directory '/workspaces/mistable/build'
+[ 34%] Linking C executable mistable_phase1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/mistable_phase1.dir/link.txt --verbose=1
+/usr/bin/cc CMakeFiles/mistable_phase1.dir/src/main.c.o CMakeFiles/mistable_phase1.dir/src/log.c.o CMakeFiles/mistable_phase1.dir/src/status.c.o CMakeFiles/mistable_phase1.dir/src/video/video_engine.c.o CMakeFiles/mistable_phase1.dir/src/video/tmds_pio.c.o CMakeFiles/mistable_phase1.dir/src/video/patterns.c.o CMakeFiles/mistable_phase1.dir/src/video/osd.c.o CMakeFiles/mistable_phase1.dir/src/video/font8x8.c.o CMakeFiles/mistable_phase1.dir/src/video/scale.c.o CMakeFiles/mistable_phase1.dir/src/usb/usb_device_cdc.c.o CMakeFiles/mistable_phase1.dir/src/usb/usb_host_piousb.c.o CMakeFiles/mistable_phase1.dir/src/usb/hid_keyboard.c.o CMakeFiles/mistable_phase1.dir/src/storage/sd_spi.c.o CMakeFiles/mistable_phase1.dir/src/storage/ff_port.c.o CMakeFiles/mistable_phase1.dir/src/storage/splash.c.o -o mistable_phase1  third_party/pico-sdk/src/common/pico_stdlib/libpico_stdlib.a third_party/pico-sdk/src/libhardware_spi.a libfreertos_kernel.a 
+make[2]: Leaving directory '/workspaces/mistable/build'
+make[1]: Leaving directory '/workspaces/mistable/build'
