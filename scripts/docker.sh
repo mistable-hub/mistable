@@ -60,6 +60,11 @@ docker_args+=(
   -w /work
 )
 
-cmd=(bash --rcfile /work/scripts/bashrc -i -c "$*")
+if [[ "$#" -eq 1 && "$1" == "bash" ]]; then
+  exec docker "${docker_args[@]}" "$image_name" bash --rcfile /work/scripts/bashrc -i
+fi
 
-exec docker "${docker_args[@]}" "$image_name" "${cmd[@]}"
+cmd=$(printf '%q ' "$@")
+cmd=${cmd% }
+
+exec docker "${docker_args[@]}" "$image_name" bash --rcfile /work/scripts/bashrc -i -c "$cmd"
