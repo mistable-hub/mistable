@@ -7,35 +7,64 @@ if [[ $# -eq 0 ]]; then
 fi
 
 script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+
 repo_root="$script_dir"
 while [[ "$repo_root" != "/" && ! -f "$repo_root/AGENTS.md" ]]; do
   repo_root=$(dirname -- "$repo_root")
 done
+
 if [[ ! -f "$repo_root/AGENTS.md" ]]; then
   echo "ERROR: AGENTS.md not found" >&2
   exit 1
 fi
 
-if ! docker image inspect mistable-dev >/dev/null 2>&1; then
-  (cd "$repo_root" && docker build -t mistable-dev -f container/Dockerfile .)
+image_name="${IMAGE_NAME:-mistable-dev}"
+
+if ! docker image inspect "$image_name" >/dev/null 2>&1; then
+  (cd "$repo_root" && docker build -t "$image_name" -f container/Dockerfile .)
 fi
 
+host_uid="$(id -u)"
+host_gid="$(id -g)"
+host_user="${USER:-devuser}"
+host_group="$(id -gn 2>/dev/null || echo devgroup)"
+host_home="${HOME:-/tmp}"
+
+tmp_dir="$(mktemp -d)"
+trap 'rm -rf "$tmp_dir"' EXIT
+
+cat > "$tmp_dir/passwd" <<EOPASSWD
+root:x:0:0:root:/root:/bin/bash
+${host_user}:x:${host_uid}:${host_gid}:${host_user}:${host_home}:/bin/bash
+EOPASSWD
+
+cat > "$tmp_dir/group" <<EOGROUP
+root:x:0:
+${host_group}:x:${host_gid}:
+EOGROUP
+
 docker_args=(run --rm)
-if [[ -t 1 ]]; then
+
+if [[ -t 0 && -t 1 ]]; then
   docker_args+=(-it)
 fi
-docker_args+=(-v "$repo_root:/work" -w /work)
+
+docker_args+=(
+  -u "${host_uid}:${host_gid}"
+  -e USER="${host_user}"
+  -e HOME="${host_home}"
+  -e TERM="${TERM:-xterm-256color}"
+  -v "$repo_root:/work"
+  -v "$tmp_dir/passwd:/etc/passwd:ro"
+  -v "$tmp_dir/group:/etc/group:ro"
+  -w /work
+)
+
+if [[ "$#" -eq 1 && "$1" == "bash" ]]; then
+  exec docker "${docker_args[@]}" "$image_name" bash --rcfile /work/scripts/bashrc -i
+fi
 
 cmd=$(printf '%q ' "$@")
 cmd=${cmd% }
 
-user_args=(-u "$(id -u):$(id -g)")
-
-if docker "${docker_args[@]}" "${user_args[@]}" mistable-dev bash -lc "true" >/dev/null 2>&1; then
-  docker "${docker_args[@]}" "${user_args[@]}" mistable-dev bash -lc "$cmd"
-  exit $?
-fi
-
-echo "WARNING: user mapping failed; running as container default user" >&2
-docker "${docker_args[@]}" mistable-dev bash -lc "$cmd"
-exit $?
+exec docker "${docker_args[@]}" "$image_name" bash --rcfile /work/scripts/bashrc -i -c "$cmd"
