@@ -195,6 +195,31 @@ Then make one small, bounded change at a time.
 
 ---
 
+## Troubleshooting
+
+### Permission denied writing to `build/`
+
+If `./scripts/sanity.sh` fails with a write error under `build/`, the simplest fix is usually to remove the generated build directory and rerun the check:
+
+    rm -rf build
+
+Then re-enter the container if needed and rerun:
+
+    ./scripts/sanity.sh
+
+`build/` is generated output and can be recreated.
+
+### Sanity check fails after environment changes
+
+Use the standard baseline sequence again:
+
+    ./dev
+    ./scripts/sanity.sh
+
+If sanity does not pass, treat it as an environment problem first before assuming the RTL or simulation is broken.
+
+---
+
 ## Notes
 
 Task 000 originally established the minimal runnable spine and its artifact. The current hardened container flow should be treated as the trusted baseline for continued development.
