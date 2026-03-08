@@ -24,25 +24,42 @@ if ! docker image inspect "$image_name" >/dev/null 2>&1; then
   (cd "$repo_root" && docker build -t "$image_name" -f container/Dockerfile .)
 fi
 
+host_uid="$(id -u)"
+host_gid="$(id -g)"
+host_user="${USER:-devuser}"
+host_group="$(id -gn 2>/dev/null || echo devgroup)"
+host_home="${HOME:-/tmp}"
+
+tmp_dir="$(mktemp -d)"
+trap 'rm -rf "$tmp_dir"' EXIT
+
+cat > "$tmp_dir/passwd" <<EOPASSWD
+root:x:0:0:root:/root:/bin/bash
+${host_user}:x:${host_uid}:${host_gid}:${host_user}:${host_home}:/bin/bash
+EOPASSWD
+
+cat > "$tmp_dir/group" <<EOGROUP
+root:x:0:
+${host_group}:x:${host_gid}:
+EOGROUP
+
 docker_args=(run --rm)
 
-if [[ -t 1 ]]; then
+if [[ -t 0 && -t 1 ]]; then
   docker_args+=(-it)
 fi
 
 docker_args+=(
+  -u "${host_uid}:${host_gid}"
+  -e USER="${host_user}"
+  -e HOME="${host_home}"
+  -e TERM="${TERM:-xterm-256color}"
   -v "$repo_root:/work"
+  -v "$tmp_dir/passwd:/etc/passwd:ro"
+  -v "$tmp_dir/group:/etc/group:ro"
   -w /work
 )
 
-cmd=$(printf '%q ' "$@")
-cmd=${cmd% }
+cmd=(bash -lc "$*")
 
-user_args=(-u "$(id -u):$(id -g)")
-
-if docker "${docker_args[@]}" "${user_args[@]}" "$image_name" bash -lc "true" >/dev/null 2>&1; then
-  exec docker "${docker_args[@]}" "${user_args[@]}" "$image_name" bash -lc "$cmd"
-fi
-
-echo "WARNING: user mapping failed; running as container default user" >&2
-exec docker "${docker_args[@]}" "$image_name" bash -lc "$cmd"
+exec docker "${docker_args[@]}" "$image_name" "${cmd[@]}"
