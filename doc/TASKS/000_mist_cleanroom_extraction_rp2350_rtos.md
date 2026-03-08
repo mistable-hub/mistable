@@ -14,6 +14,7 @@ HARD RULES
 - Do NOT propose improvements.
 - Do NOT generalize beyond what exists.
 - Every statement must be supported by evidence from the repo.
+- NO NETWORK. Analyze ONLY the current directory tree.
 
 COMPATIBILITY BUDGET (MANDATORY)
 Classify all behaviors into one of the following categories:
@@ -45,23 +46,110 @@ EVIDENCE REQUIREMENT (MANDATORY)
 - Every bullet in the spec MUST include at least one citation in the form:
   `path/to/file.c:function()` or `path/to/file.h:symbol`
 - If evidence cannot be found, explicitly state: **NOT FOUND IN REPO** (and do not speculate).
+- NEGATIVE claims (e.g., "no submodules") require explicit filesystem evidence (see Snapshot Proof); otherwise mark **INFERENCE** or **NOT FOUND IN REPO**.
+- Forbidden: fake/mangled identifiers (e.g., `staticvoid...`) used as citations or symbols.
+- Forbidden: using `NOT_FOUND_IN_SNAPSHOT` as a citation token.
 
-REPO CONTEXT CONFIRMATION (MANDATORY FIRST STEP)
-Before producing any docs:
-1) Print the repo root path you are using.
-2) List the full top-level tree (at least: top-level dirs + key src/include dirs).
-3) Identify the firmware target(s) present (e.g., main entrypoint file(s), build system files, and any target/board selection).
-4) Confirm you are analyzing the complete repository state that is available in your environment (including submodules if present). If submodules are missing/uninitialized, say so explicitly.
+TOOL FALLBACKS (MANDATORY)
+- Prefer `rg` for searching. If `rg` is unavailable, use `grep -R -n` with equivalent patterns.
+- Prefer git-based proofs if `.git/` exists. If `.git/` is absent (tarball extract), use filesystem-only proof and DO NOT FAIL solely due to missing git metadata.
 
+SELF-REPAIR (MANDATORY)
+You MUST complete in ONE RUN by self-repairing predictable failures.
+- You may do up to 2 repair passes.
+- A repair pass regenerates ONLY the broken artifact(s) (do not rewrite everything).
+- After each repair pass, re-run validation.
+- Only STOP with FAIL after repair passes are exhausted OR the snapshot is truly incomplete.
+
+======================================================================
+PHASE 0 — SNAPSHOT PROOF (MANDATORY FIRST STEP)
+======================================================================
+
+Create `docs/repo_snapshot_manifest.md` BEFORE producing any other docs.
+
+It MUST include command outputs (verbatim) for:
+
+1) Snapshot root proof
+- `pwd`
+- `ls -la` (top-level)
+
+2) Tree proof
+- `find . -maxdepth 2 -type d | sort`
+
+3) Tracked-file proof
+If `.git/` exists:
+- `git rev-parse HEAD`
+- `git status --porcelain`
+- `git ls-files | wc -l`
+- `git ls-files '*.c' | wc -l`
+- `git ls-files '*.h' | wc -l`
+- `git ls-files '*.S' '*.s' | wc -l`
+If `.git/` does NOT exist:
+- State: "No .git directory in snapshot; using filesystem-only proof."
+- `find . -type f | wc -l`
+- `find . -type f -name '*.c' | wc -l`
+- `find . -type f -name '*.h' | wc -l`
+
+4) Submodule proof (negative claims must rely on this)
+If `.git/` exists:
+- `git submodule status --recursive`
+Always:
+- `find . -maxdepth 2 -name .gitmodules -print`
+
+5) Build system + firmware target proof
+- `find . -maxdepth 3 -name Makefile -o -name CMakeLists.txt -o -name '*.mk' -o -name '*.cmake' | sort`
+- Identify firmware entrypoints:
+  - Prefer: `rg -n "int\\s+main\\s*\\(" .`
+  - Fallback: `grep -R -n "int[[:space:]]\\+main[[:space:]]*(" .`
+- Identify startup/entry files if present:
+  - Prefer: `rg -n "(Reset_Handler|startup|ENTRY\\()|\\bvector\\b" . | head -n 100`
+  - Fallback: `grep -R -n -E "(Reset_Handler|startup|ENTRY\\()|\\bvector\\b" . | head -n 100`
+
+6) No-network statement
+- "No network access used; analysis limited to current directory tree."
+
+PHASE 0 GATE (MANDATORY)
+Proceed only if:
+- You can enumerate tree + build system files + likely entrypoints (or explicitly state NOT FOUND IN REPO), AND
+- You have produced submodule proof, AND
+- You confirm you are analyzing ONLY the current directory tree.
+
+If snapshot appears incomplete in a way that blocks extraction, mark FAIL (but only after attempting available fallbacks).
+
+======================================================================
+PHASE 1 — MECHANICAL MODULE INVENTORY (MANDATORY, NO HALLUCINATION)
+======================================================================
+
+Create:
+1) `docs/module_inventory.csv`
+2) `docs/inventory_warnings.md`
+
+`docs/module_inventory.csv` MUST be mechanical (no guessed APIs).
+Columns:
+- file_path
+- kind (c/h/S/ld/mk/other)
+- includes (first 10 `#include` lines if present; else blank)
+- exports (for .h: matched lines for `extern`, `typedef`, `struct`, `enum`, `#define` — first 50 matches; else blank)
+- defs (for .c: top-level function definitions detected by conservative regex — first 50 matches; else blank)
+
+Rules:
+- Do NOT invent symbol names.
+- Do NOT output mangled tokens.
+- If extraction fails for a file, leave fields blank and log in `docs/inventory_warnings.md`.
+
+======================================================================
 REPO STUDY INSTRUCTIONS (MANDATORY)
-1) Enumerate all source modules (*.c/*.h) and summarize each module’s responsibility.
-2) Identify top-level control flow and sequencing (entrypoints, main loop, any ISR-driven flows).
-3) Extract the service model S1..S5 as described below, including state machines and error handling.
+======================================================================
+1) Enumerate all source modules (*.c/*.h) and summarize each module’s responsibility (use mechanical inventory + evidence; no guessing).
+2) Identify top-level control flow and sequencing (entrypoints, main loop, ISR-driven flows).
+3) Extract the service model S1..S5 (state machines + error handling).
 4) Extract the MCU<->FPGA contract exactly as implemented, including byte-level framing.
-5) Extract all implicit user-facing contracts (menu flow, file search order, defaults, config handling).
+5) Extract implicit user-facing contracts (menu flow, file search order, defaults, config handling).
 6) Identify hardware abstraction points (STM32/peripheral usage) as an abstract driver surface only.
 
-DELIVERABLES
+======================================================================
+DELIVERABLES (MANDATORY)
+======================================================================
 
 1) Create `docs/cleanroom_port_spec.md` with these sections:
 
@@ -74,6 +162,8 @@ A. System Overview
 B. Module Inventory (Repo-wide)
 - Table: file -> responsibility (1–3 sentences) -> key public APIs -> evidence
 - Include all modules, even if trivial.
+- IMPORTANT: derive “key public APIs” ONLY from real symbols in headers / defs from inventory; do NOT invent.
+- If uncertain: NOT FOUND IN REPO.
 
 C. Service Model (S1..S5)
 
@@ -163,6 +253,10 @@ I. Clean-room RTOS Mapping Notes (STRICTLY LIMITED)
 - No architectural redesign
 - No implementation details beyond task/queue ownership
 
+J. Open Items (Strict)
+- List any NOT FOUND IN REPO items that block faithful implementation.
+- For each open item: impact + minimum evidence needed.
+
 2) Create `docs/evidence_index.md`
 - Table format (one row per claim, not per section):
   - Spec section
@@ -175,7 +269,37 @@ QUALITY BAR (MANDATORY)
 - The spec must be sufficiently precise that an engineer can implement the RP2350+FreeRTOS firmware without reading MiST source code again.
 - Any ambiguity must be called out explicitly with NOT FOUND IN REPO, rather than guessed.
 
+======================================================================
+PHASE 3 — VALIDATION + SELF-REPAIR (MANDATORY)
+======================================================================
+
+Create `docs/validation_report.md` and validate:
+
+A) Citation integrity checks (FAIL if any):
+- Scan `docs/cleanroom_port_spec.md` and `docs/evidence_index.md` for forbidden tokens:
+  - `NOT_FOUND_IN_SNAPSHOT`
+  - mangled identifiers like `staticvoid`
+- Verify every evidence citation references an existing file path.
+- For citations that include `:symbol()`:
+  - Verify the symbol string appears in the referenced file (simple text match is acceptable).
+  - If not verifiable, mark FAIL and list offending rows.
+
+B) Coverage checks (FAIL if any):
+- Every MUST MATCH claim bullet in the spec has a corresponding row in `docs/evidence_index.md`.
+- Every wire-format example has at least one citation.
+
+C) Snapshot proof checks:
+- Confirm `docs/repo_snapshot_manifest.md` exists and includes required command outputs.
+
+D) Self-repair loop:
+If FAIL:
+- Regenerate ONLY the broken artifact(s) to resolve the specific failures.
+- Re-run validation.
+- Up to 2 repair passes.
+- If still FAIL after repairs, stop and report FAIL with exact blockers.
+
 STOP CONDITION
-- When both documents exist and are internally consistent.
+- PASS: stop after docs exist and validation passes.
+- FAIL: stop only after repair passes exhausted.
 - Do NOT proceed to writing RP2350 code.
 - Do NOT propose enhancements or future features.
