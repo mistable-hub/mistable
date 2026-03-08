@@ -1,0 +1,4 @@
+alias ls='ls --color=auto'
+alias ll='ls -lah --color=auto'
+alias la='ls -A --color=auto'
+export TERM="${TERM:-xterm-256color}"

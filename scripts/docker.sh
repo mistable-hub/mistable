@@ -60,6 +60,6 @@ docker_args+=(
   -w /work
 )
 
-cmd=(bash -lc "$*")
+cmd=(bash --rcfile /work/scripts/bashrc -i -c "$*")
 
 exec docker "${docker_args[@]}" "$image_name" "${cmd[@]}"
