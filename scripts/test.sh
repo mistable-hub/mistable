@@ -22,7 +22,7 @@ echo "[test] building simulation"
 make sim
 
 echo "[test] running simulation"
-./build/vobj/Vmistable_top
+./build/vobj/sim
 
 if [[ ! -f build/frame.ppm ]]; then
   echo "[test] ERROR: build/frame.ppm was not generated" >&2
