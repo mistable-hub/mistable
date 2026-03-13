@@ -90,11 +90,35 @@ This script:
 
 ---
 
+## Makefile Shortcuts
+
+The repository also exposes common workflow steps through `make`:
+
+    make sim
+    make clean
+    make shell
+    make sanity
+    make golden
+
+Target summary:
+
+- `make sim` — build and run the simulation
+- `make clean` — remove generated build output
+- `make shell` — enter the trusted container shell (`./dev`)
+- `make sanity` — run the environment verification gate
+- `make golden` — intentionally refresh the golden smoke hash
+
+---
+
 ## Initializing or Updating the Golden Hash
 
 The first time you adopt checksum verification, or when an intentional simulation-output change occurs, refresh the golden hash with:
 
     UPDATE_GOLDEN=1 ./scripts/test.sh
+
+Or, using the convenience target:
+
+    make golden
 
 This writes the current artifact hash to:
 
@@ -109,6 +133,10 @@ Only do this when the output change is intentional and verified.
 You can invoke the test script directly from the repo root:
 
     ./scripts/test.sh
+
+Or use the Makefile target:
+
+    make sim
 
 ---
 
@@ -154,6 +182,11 @@ When starting work, the preferred sequence is:
     ./dev
     ./scripts/sanity.sh
 
+Or, equivalently:
+
+    make shell
+    make sanity
+
 Only proceed with development after `./scripts/sanity.sh` passes.
 
 ---
@@ -169,9 +202,13 @@ The simulation output artifact is:
 
 - `build/frame.ppm`
 
-The Makefile target used by the current spine is:
+Current Makefile workflow targets are:
 
-    make sim
+- `make sim`
+- `make clean`
+- `make shell`
+- `make sanity`
+- `make golden`
 
 ---
 
@@ -184,7 +221,7 @@ The Makefile target used by the current spine is:
 - `scripts/sanity.sh` — environment verification gate
 - `scripts/test.sh` — smoke/build verification script
 - `sim/frame.ppm.sha256` — golden checksum for the smoke artifact
-- `Makefile` — simulation build target
+- `Makefile` — simulation and workflow convenience targets
 - `rtl/mistable_top.sv` — current top-level RTL
 - `sim/tb.cpp` — Verilator testbench
 
@@ -211,8 +248,8 @@ Future work should build on this baseline rather than bypass it.
     git pull --rebase
     git checkout -b <new-branch>
 
-    ./dev
-    ./scripts/sanity.sh
+    make shell
+    make sanity
 
 Then make one small, bounded change at a time.
 
@@ -242,6 +279,10 @@ If the output change is intentional and verified, update the golden hash:
 
     UPDATE_GOLDEN=1 ./scripts/test.sh
 
+Or:
+
+    make golden
+
 Then commit the updated `sim/frame.ppm.sha256`.
 
 ### Sanity check fails after environment changes
@@ -250,6 +291,11 @@ Use the standard baseline sequence again:
 
     ./dev
     ./scripts/sanity.sh
+
+Or:
+
+    make shell
+    make sanity
 
 If sanity does not pass, treat it as an environment problem first before assuming the RTL or simulation is broken.
 
