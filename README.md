@@ -39,6 +39,10 @@ Shell defaults for interactive container sessions:
 
 - `scripts/bashrc`
 
+Golden smoke verification file:
+
+- `sim/frame.ppm.sha256`
+
 ---
 
 ## Quick Start
@@ -62,6 +66,7 @@ This checks:
 - git visibility
 - simulation build and run
 - output artifact generation
+- artifact checksum verification
 
 If this passes, the current baseline is healthy.
 
@@ -79,7 +84,23 @@ This script:
 2. builds the simulation
 3. runs the simulation
 4. verifies `build/frame.ppm` exists
-5. prints a success message
+5. computes the artifact SHA-256
+6. compares it against `sim/frame.ppm.sha256`
+7. prints a success message
+
+---
+
+## Initializing or Updating the Golden Hash
+
+The first time you adopt checksum verification, or when an intentional simulation-output change occurs, refresh the golden hash with:
+
+    UPDATE_GOLDEN=1 ./scripts/test.sh
+
+This writes the current artifact hash to:
+
+- `sim/frame.ppm.sha256`
+
+Only do this when the output change is intentional and verified.
 
 ---
 
@@ -126,6 +147,7 @@ The current development baseline is:
 - `./scripts/sanity.sh` is the standard environment gate
 - `./scripts/test.sh` is the standard smoke/build verification path
 - `build/frame.ppm` is the current proof artifact
+- `sim/frame.ppm.sha256` is the expected artifact checksum
 
 When starting work, the preferred sequence is:
 
@@ -161,6 +183,7 @@ The Makefile target used by the current spine is:
 - `scripts/bashrc` — interactive shell defaults
 - `scripts/sanity.sh` — environment verification gate
 - `scripts/test.sh` — smoke/build verification script
+- `sim/frame.ppm.sha256` — golden checksum for the smoke artifact
 - `Makefile` — simulation build target
 - `rtl/mistable_top.sv` — current top-level RTL
 - `sim/tb.cpp` — Verilator testbench
@@ -208,6 +231,18 @@ Then re-enter the container if needed and rerun:
     ./scripts/sanity.sh
 
 `build/` is generated output and can be recreated.
+
+### Hash mismatch in `./scripts/test.sh`
+
+If the simulation runs but `./scripts/test.sh` reports a checksum mismatch, that means the generated artifact changed.
+
+First assume the change is unintentional and investigate.
+
+If the output change is intentional and verified, update the golden hash:
+
+    UPDATE_GOLDEN=1 ./scripts/test.sh
+
+Then commit the updated `sim/frame.ppm.sha256`.
 
 ### Sanity check fails after environment changes
 
