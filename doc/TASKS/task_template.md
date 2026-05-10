@@ -11,11 +11,9 @@ Describe the specific purpose of this task.
 
 This section must answer:
 
-```text
-What is this task meant to accomplish?
-Why does this task exist in the bringup ladder?
-What should be true after this task is complete?
-```
+    What is this task meant to accomplish?
+    Why does this task exist in the bringup ladder?
+    What should be true after this task is complete?
 
 Keep this section narrow.
 
@@ -27,21 +25,17 @@ Do not use this section to redefine roadmap phases, architecture, bringup order,
 
 Read and follow:
 
-```text
-AGENTS.md
-doc/master_design_statement.md
-doc/ROADMAP.md
-doc/bringup_ladder.md
-doc/source_of_truth.md
-doc/process/agent_workflow.md
-doc/process/code_review.md
-```
+    AGENTS.md
+    doc/master_design_statement.md
+    doc/ROADMAP.md
+    doc/bringup_ladder.md
+    doc/source_of_truth.md
+    doc/process/agent_workflow.md
+    doc/process/code_review.md
 
 Also read any task-specific authority listed here:
 
-```text
-<additional_authority_file_if_needed>
-```
+    <additional_authority_file_if_needed>
 
 This task packet narrows the work for this task only.
 
@@ -55,15 +49,11 @@ If this task conflicts with higher-authority documents, stop and report the conf
 
 This task corresponds to:
 
-```text
-Rung <N>: <rung_name>
-```
+    Rung <N>: <rung_name>
 
 From:
 
-```text
-doc/bringup_ladder.md
-```
+    doc/bringup_ladder.md
 
 This task may implement only the work needed for this rung.
 
@@ -77,21 +67,15 @@ Do not use this task to repair unrelated historical task drift unless explicitly
 
 This task is a:
 
-```text
-<planning | implementation | review | verification | handoff>
-```
+    <planning | implementation | review | verification | handoff>
 
 The agent must follow the matching mode rules in:
 
-```text
-doc/process/agent_workflow.md
-```
+    doc/process/agent_workflow.md
 
 If this is a review task, the agent must also follow:
 
-```text
-doc/process/code_review.md
-```
+    doc/process/code_review.md
 
 Do not mix modes unless this task explicitly authorizes it.
 
@@ -105,11 +89,9 @@ Do not create, switch, merge, rebase, or delete branches unless the invoking pro
 
 Run first:
 
-```bash
-git status --short
-git rev-parse --abbrev-ref HEAD
-git rev-parse HEAD
-```
+    git status --short
+    git rev-parse --abbrev-ref HEAD
+    git rev-parse HEAD
 
 If the working tree is dirty before starting, stop and report the existing changes unless the invoking prompt explicitly says to continue from a dirty tree.
 
@@ -121,14 +103,12 @@ Before making changes, read the required authority documents and inspect the cur
 
 At minimum, confirm:
 
-```text
-active branch
-current HEAD
-working tree status
-required authority files exist
-allowed files exist or may be created
-protected files are not being edited unless authorized
-```
+    active branch
+    current HEAD
+    working tree status
+    required authority files exist
+    allowed files exist or may be created
+    protected files are not being edited unless authorized
 
 Do not rely on prior chat history as authority.
 
@@ -140,10 +120,8 @@ Do not rely on agent memory as authority.
 
 This task may create or edit only:
 
-```text
-<allowed_file_or_directory>
-<allowed_file_or_directory>
-```
+    <allowed_file_or_directory>
+    <allowed_file_or_directory>
 
 If the task appears to require editing files outside this list, stop and report the reason.
 
@@ -155,23 +133,20 @@ Do not expand allowed files by inference.
 
 Do not edit these files unless this task explicitly allows it:
 
-```text
-AGENTS.md
-doc/master_design_statement.md
-doc/ROADMAP.md
-doc/bringup_ladder.md
-doc/source_of_truth.md
-doc/process/agent_workflow.md
-doc/process/code_review.md
-doc/multi_core_structure.md
-doc/core_lift_sim_contract.md
-```
+    AGENTS.md
+    doc/master_design_statement.md
+    doc/ROADMAP.md
+    doc/bringup_ladder.md
+    doc/source_of_truth.md
+    doc/process/agent_workflow.md
+    doc/process/code_review.md
+    doc/TASKS/task_template.md
+    doc/multi_core_structure.md
+    doc/core_lift_sim_contract.md
 
 Additional protected files for this task:
 
-```text
-<additional_protected_file_if_needed>
-```
+    <additional_protected_file_if_needed>
 
 If a protected file appears to require modification, stop and report the reason.
 
@@ -181,25 +156,21 @@ If a protected file appears to require modification, stop and report the reason.
 
 Do not add, edit, or implement:
 
-```text
-<forbidden_scope_item>
-<forbidden_scope_item>
-```
+    <forbidden_scope_item>
+    <forbidden_scope_item>
 
 Common forbidden scope examples:
 
-```text
-future-rung work
-unrequested framework abstraction
-unrequested physical-board support
-unrequested MCU firmware
-unrequested service-link implementation
-unrequested core lift
-unrequested Verilator harness rewrite
-unrequested build-system redesign
-unrequested README expansion
-unrequested protected-file edits
-```
+    future-rung work
+    unrequested framework abstraction
+    unrequested physical-board support
+    unrequested MCU firmware
+    unrequested service-link implementation
+    unrequested core lift
+    unrequested Verilator harness rewrite
+    unrequested build-system redesign
+    unrequested README expansion
+    unrequested protected-file edits
 
 This task must not become a general cleanup pass.
 
@@ -209,10 +180,8 @@ This task must not become a general cleanup pass.
 
 Implement only the following:
 
-```text
-<required_work_item>
-<required_work_item>
-```
+    <required_work_item>
+    <required_work_item>
 
 Keep the implementation minimal and directly tied to the task purpose.
 
@@ -226,25 +195,21 @@ Do not infer additional features from roadmap direction.
 
 This task must not claim:
 
-```text
-<non_claim>
-<non_claim>
-```
+    <non_claim>
+    <non_claim>
 
 Common non-claim examples:
 
-```text
-full virtual board behavior
-working monitor/debugger behavior
-FPGA interaction
-MCU equivalence
-service-link transport
-CORE/ECOSYSTEM/BOARD migration completion
-real upstream core support
-NES compatibility
-physical-board readiness
-Keystone86 PC readiness
-```
+    full virtual board behavior
+    working monitor/debugger behavior
+    FPGA interaction
+    MCU equivalence
+    service-link transport
+    CORE/ECOSYSTEM/BOARD migration completion
+    real upstream core support
+    NES compatibility
+    physical-board readiness
+    Keystone86 PC readiness
 
 Documentation, comments, final reports, and commit messages must preserve these non-claims.
 
@@ -254,10 +219,8 @@ Documentation, comments, final reports, and commit messages must preserve these 
 
 Run the following commands:
 
-```bash
-<acceptance_command>
-<acceptance_command>
-```
+    <acceptance_command>
+    <acceptance_command>
 
 If a command cannot be run, report why.
 
@@ -275,15 +238,13 @@ Before reporting completion, inspect the final diff.
 
 Run, when applicable:
 
-```bash
-git status --short
-git diff --stat
-git diff --check
-```
+    git status --short
+    git diff --stat
+    git diff --check
 
 If this task involves code or scripts, inspect the relevant diff manually.
 
-If this task involves documentation, confirm the changed document did not take over another document’s role.
+If this task involves documentation, confirm the changed document did not take over another document's role.
 
 If this task involves generated artifacts, confirm they were authorized.
 
@@ -297,9 +258,7 @@ If committing is requested, commit only after required acceptance commands pass 
 
 Suggested commit message:
 
-```text
-<type>: <short summary>
-```
+    <type>: <short summary>
 
 Do not push unless explicitly instructed.
 
@@ -309,19 +268,17 @@ Do not push unless explicitly instructed.
 
 Stop and report instead of guessing if:
 
-```text
-required authority files are missing
-the active task conflicts with higher-authority documents
-the working tree is dirty before starting and continuation was not authorized
-the task requires files outside the allowed list
-the task requires protected-file edits not explicitly authorized
-the task requires future-rung work
-the task requires architecture changes not authorized here
-acceptance cannot be proven
-required commands fail after the allowed number of attempts
-the same error repeats after the allowed number of fix attempts
-the branch or HEAD cannot be identified
-```
+    required authority files are missing
+    the active task conflicts with higher-authority documents
+    the working tree is dirty before starting and continuation was not authorized
+    the task requires files outside the allowed list
+    the task requires protected-file edits not explicitly authorized
+    the task requires future-rung work
+    the task requires architecture changes not authorized here
+    acceptance cannot be proven
+    required commands fail after the allowed number of attempts
+    the same error repeats after the allowed number of fix attempts
+    the branch or HEAD cannot be identified
 
 Stopping and reporting is preferred over inventing architecture.
 
@@ -331,19 +288,17 @@ Stopping and reporting is preferred over inventing architecture.
 
 At the end of the task, report:
 
-```text
-Branch:
-HEAD:
-Working tree status:
-Files changed:
-Commands run:
-Pass/fail result:
-Implemented scope:
-Explicit non-claims:
-What was not implemented:
-Known blockers:
-Next safe candidate:
-```
+    Branch:
+    HEAD:
+    Working tree status:
+    Files changed:
+    Commands run:
+    Pass/fail result:
+    Implemented scope:
+    Explicit non-claims:
+    What was not implemented:
+    Known blockers:
+    Next safe candidate:
 
 The final report must be factual.
 
@@ -357,15 +312,13 @@ Do not describe future work as completed.
 
 This task is successful only if:
 
-```text
-only allowed files were changed
-protected files were not modified without authorization
-required work was completed
-forbidden scope was not implemented
-required acceptance commands passed or authorized exceptions were reported
-non-claims were preserved
-final report was provided in the required format
-```
+    only allowed files were changed
+    protected files were not modified without authorization
+    required work was completed
+    forbidden scope was not implemented
+    required acceptance commands passed or authorized exceptions were reported
+    non-claims were preserved
+    final report was provided in the required format
 
 ---
 
