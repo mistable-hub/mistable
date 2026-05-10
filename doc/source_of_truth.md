@@ -1,6 +1,6 @@
 # Mistable Source of Truth Map
 
-Status: Draft v0.1  
+Status: Draft v0.2  
 Role: Current repo truth map
 
 ---
@@ -97,7 +97,7 @@ Current reality:
 ```text
 AGENTS.md exists
 AGENTS.md still describes the older Phase 0 Minimal Spine context
-AGENTS.md does not yet fully reference the new master design statement / roadmap / bringup ladder system
+AGENTS.md does not yet fully reference the new master design statement / roadmap / bringup ladder / source-of-truth / process-document system
 ```
 
 Current treatment:
@@ -442,14 +442,48 @@ existence of these documents does not mean a real core lift has started
 
 ---
 
-## 11. Current Missing Planned Documents
+## 11. Current Process Documents
+
+The current process document state is:
+
+```text
+doc/process/agent_workflow.md
+    Exists.
+    Defines agent session modes, authority reading order, classification-before-editing,
+    handoff expectations, structured reporting, tool/capability boundaries,
+    one-active-implementation-agent policy, context budget rule, historical task handling,
+    and stop conditions.
+
+doc/process/code_review.md
+    Planned.
+    Not yet written.
+    Should define detailed read-only review procedure and dirty-diff review expectations.
+```
+
+Current reality:
+
+```text
+agent workflow procedure now exists in the new document system
+detailed code review procedure is not yet fully defined in the new document system
+```
+
+Non-claims:
+
+```text
+doc/process/agent_workflow.md does not authorize implementation by itself
+doc/process/agent_workflow.md does not replace active task/rung files
+doc/process/code_review.md does not yet exist
+```
+
+---
+
+## 12. Current Missing Planned Documents
 
 The current document system references files that are planned but not yet complete.
 
 Known planned documents include:
 
 ```text
-doc/process/agent_workflow.md
 doc/process/code_review.md
 doc/TASKS/task_template.md
 doc/VERIFICATION/<rung>.md
@@ -463,10 +497,9 @@ they should be created in future rungs
 they should not be assumed to exist until they are committed
 ```
 
-Non-claim:
+Non-claims:
 
 ```text
-agent workflow procedure is not yet fully defined in the new document system
 code review procedure is not yet fully defined in the new document system
 task/rung template is not yet fully defined in the new document system
 formal verification records do not yet exist under doc/VERIFICATION/
@@ -474,7 +507,7 @@ formal verification records do not yet exist under doc/VERIFICATION/
 
 ---
 
-## 12. What Is Currently Proven
+## 13. What Is Currently Proven
 
 The current repo proves, at most:
 
@@ -484,7 +517,8 @@ the simulation can produce an observable build artifact
 the repo has a Docker-oriented development environment
 the repo has Make/script entry points for current smoke verification
 the repo has a golden hash file for the current frame artifact
-the project now has a root design statement, roadmap, and bringup ladder
+the project now has a root design statement, roadmap, bringup ladder, and source-of-truth map
+the project now has an agent workflow procedure document
 the project has frozen long-term structure and core-lift policy documents
 ```
 
@@ -492,7 +526,7 @@ This is the current baseline.
 
 ---
 
-## 13. What Is Not Currently Proven
+## 14. What Is Not Currently Proven
 
 The current repo does not yet prove:
 
@@ -513,27 +547,29 @@ multi-board support
 formal verification records under doc/VERIFICATION/
 fully reconciled historical task files
 fully updated AGENTS.md authority alignment
+completed code review procedure under doc/process/code_review.md
+completed task/rung template under doc/TASKS/task_template.md
 ```
 
 These items belong to later rungs.
 
 ---
 
-## 14. Current Next Position
+## 15. Current Next Position
 
-According to the bringup ladder, after this file exists the project is positioned to proceed toward:
+According to the bringup ladder, after this refresh the project is positioned to continue Rung 3 by creating:
 
 ```text
-Rung 3: Agent Workflow and Review Process
+doc/process/code_review.md
 ```
 
-This source-of-truth map does not itself start Rung 3.
+This source-of-truth map does not itself start that work.
 
-A future active task/rung file must authorize that work.
+A future active task/rung file or explicit human instruction must authorize that work.
 
 ---
 
-## 15. Conflict Rule
+## 16. Conflict Rule
 
 If this source-of-truth map conflicts with:
 
@@ -543,16 +579,17 @@ doc/ROADMAP.md
 doc/bringup_ladder.md
 doc/multi_core_structure.md
 doc/core_lift_sim_contract.md
+doc/process/agent_workflow.md
 ```
 
 stop and resolve the conflict explicitly.
 
 Do not silently reinterpret authority documents.
 
-Do not use this map to override higher-authority design, roadmap, ladder, structure, or core-lift documents.
+Do not use this map to override higher-authority design, roadmap, ladder, structure, core-lift, or process documents.
 
 ---
 
-## 16. One-Sentence Summary
+## 17. One-Sentence Summary
 
-The current Mistable repo truth is a working deterministic simulation spine plus a newly established design/roadmap/ladder authority system, with historical task files and older agent rules pending later reconciliation.
+The current Mistable repo truth is a working deterministic simulation spine plus a newly established design/roadmap/ladder/source-of-truth/agent-workflow authority system, with historical task files, older agent rules, code review procedure, task template, and formal verification records pending later reconciliation or creation.
