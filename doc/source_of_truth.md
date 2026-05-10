@@ -1,6 +1,6 @@
 # Mistable Source of Truth Map
 
-Status: Draft v0.2  
+Status: Draft v0.3  
 Role: Current repo truth map
 
 ---
@@ -455,16 +455,18 @@ doc/process/agent_workflow.md
     and stop conditions.
 
 doc/process/code_review.md
-    Planned.
-    Not yet written.
-    Should define detailed read-only review procedure and dirty-diff review expectations.
+    Exists.
+    Defines read-only review behavior, dirty-diff review expectations,
+    protected-file checks, scope checks, acceptance-evidence checks,
+    non-claim checks, generated-artifact checks, pre-commit concern categories,
+    review output format, and review stop conditions.
 ```
 
 Current reality:
 
 ```text
 agent workflow procedure now exists in the new document system
-detailed code review procedure is not yet fully defined in the new document system
+code review procedure now exists in the new document system
 ```
 
 Non-claims:
@@ -472,7 +474,8 @@ Non-claims:
 ```text
 doc/process/agent_workflow.md does not authorize implementation by itself
 doc/process/agent_workflow.md does not replace active task/rung files
-doc/process/code_review.md does not yet exist
+doc/process/code_review.md does not authorize implementation by itself
+doc/process/code_review.md does not replace active task/rung files
 ```
 
 ---
@@ -484,7 +487,6 @@ The current document system references files that are planned but not yet comple
 Known planned documents include:
 
 ```text
-doc/process/code_review.md
 doc/TASKS/task_template.md
 doc/VERIFICATION/<rung>.md
 ```
@@ -500,7 +502,6 @@ they should not be assumed to exist until they are committed
 Non-claims:
 
 ```text
-code review procedure is not yet fully defined in the new document system
 task/rung template is not yet fully defined in the new document system
 formal verification records do not yet exist under doc/VERIFICATION/
 ```
@@ -518,7 +519,7 @@ the repo has a Docker-oriented development environment
 the repo has Make/script entry points for current smoke verification
 the repo has a golden hash file for the current frame artifact
 the project now has a root design statement, roadmap, bringup ladder, and source-of-truth map
-the project now has an agent workflow procedure document
+the project now has agent workflow and code review procedure documents
 the project has frozen long-term structure and core-lift policy documents
 ```
 
@@ -547,7 +548,6 @@ multi-board support
 formal verification records under doc/VERIFICATION/
 fully reconciled historical task files
 fully updated AGENTS.md authority alignment
-completed code review procedure under doc/process/code_review.md
 completed task/rung template under doc/TASKS/task_template.md
 ```
 
@@ -557,10 +557,16 @@ These items belong to later rungs.
 
 ## 15. Current Next Position
 
-According to the bringup ladder, after this refresh the project is positioned to continue Rung 3 by creating:
+According to the bringup ladder, after this refresh the project is positioned to begin:
 
 ```text
-doc/process/code_review.md
+Rung 4: Task/Rung Template
+```
+
+The next planned file is:
+
+```text
+doc/TASKS/task_template.md
 ```
 
 This source-of-truth map does not itself start that work.
@@ -580,6 +586,7 @@ doc/bringup_ladder.md
 doc/multi_core_structure.md
 doc/core_lift_sim_contract.md
 doc/process/agent_workflow.md
+doc/process/code_review.md
 ```
 
 stop and resolve the conflict explicitly.
@@ -592,4 +599,4 @@ Do not use this map to override higher-authority design, roadmap, ladder, struct
 
 ## 17. One-Sentence Summary
 
-The current Mistable repo truth is a working deterministic simulation spine plus a newly established design/roadmap/ladder/source-of-truth/agent-workflow authority system, with historical task files, older agent rules, code review procedure, task template, and formal verification records pending later reconciliation or creation.
+The current Mistable repo truth is a working deterministic simulation spine plus an established design/roadmap/ladder/source-of-truth/agent-workflow/code-review authority system, with historical task files, older agent rules, task template, and formal verification records pending later reconciliation or creation.
