@@ -1,6 +1,6 @@
 # Mistable Source of Truth Map
 
-Status: Draft v0.3  
+Status: Draft v0.4  
 Role: Current repo truth map
 
 ---
@@ -45,6 +45,10 @@ Those responsibilities belong to the appropriate documents in the document syste
 The current top-level authority files are:
 
 ```text
+AGENTS.md
+    Standing rules for coding and review agents.
+    Entry point for agent behavior and authority discovery.
+
 doc/master_design_statement.md
     Root design identity.
     Defines what Mistable is and must remain.
@@ -57,6 +61,27 @@ doc/bringup_ladder.md
     Ordered proof rungs.
     Defines what order work happens in.
 
+doc/source_of_truth.md
+    Current repo truth map.
+    Describes current repository reality and known non-claims.
+
+doc/process/agent_workflow.md
+    Agent session procedure.
+    Defines session modes, authority reading order, classification-before-editing,
+    handoff expectations, structured reporting, tool/capability boundaries,
+    context budget, and stop conditions.
+
+doc/process/code_review.md
+    Review procedure.
+    Defines read-only review behavior, dirty-diff review expectations,
+    protected-file checks, scope checks, acceptance-evidence checks,
+    non-claim checks, generated-artifact checks, pre-commit concern categories,
+    review output format, and review stop conditions.
+
+doc/TASKS/task_template.md
+    Standard developer-directive shape.
+    Defines how future task/rung packets should be written.
+
 doc/multi_core_structure.md
     Frozen repository structure and long-term integration policy.
     Defines the intended framework/core/ecosystem/board/build-control structure.
@@ -66,7 +91,7 @@ doc/core_lift_sim_contract.md
     Defines how upstream cores are to be lifted into the simulation-first path.
 ```
 
-These files describe the current project direction and future structure.
+These files describe the current authority system, project direction, current repo truth, and process structure.
 
 They do not, by themselves, authorize implementation.
 
@@ -89,30 +114,32 @@ AGENTS.md
 Current role:
 
 ```text
-standing execution-agent rules from the earlier Phase 0 workflow
+standing entry point for coding and review agents
 ```
 
 Current reality:
 
 ```text
-AGENTS.md exists
-AGENTS.md still describes the older Phase 0 Minimal Spine context
-AGENTS.md does not yet fully reference the new master design statement / roadmap / bringup ladder / source-of-truth / process-document system
+AGENTS.md has been reconciled with the current document system
+AGENTS.md references the master design statement, roadmap, bringup ladder, source-of-truth map, process documents, and task template
+AGENTS.md requires active task/rung authorization before implementation work
+AGENTS.md treats historical task files as pending reconciliation
+AGENTS.md preserves tool/capability boundaries and non-claims discipline
 ```
 
 Current treatment:
 
 ```text
-AGENTS.md remains important historical and active agent guidance
-AGENTS.md should be updated in a later rung after the process docs and task template exist
-AGENTS.md must not be silently ignored by coding agents
-AGENTS.md must not override newer root authority documents if a conflict is discovered
+AGENTS.md is the first file coding and review agents should read
+AGENTS.md is not the whole project spec
+AGENTS.md must not duplicate or replace downstream authority documents
+AGENTS.md should remain long-lived and rarely changed
 ```
 
 Non-claim:
 
 ```text
-AGENTS.md is not yet fully reconciled with the new document system
+AGENTS.md does not authorize implementation by itself
 ```
 
 ---
@@ -125,7 +152,7 @@ The current repository contains historical task files under:
 doc/TASKS/
 ```
 
-Current known task files:
+Current known historical task files:
 
 ```text
 doc/TASKS/000_phase0_minimal_spine.md
@@ -162,7 +189,39 @@ this task should be deferred or reconciled later, not executed now
 
 ---
 
-## 5. Current Implementation Baseline
+## 5. Current Task Template
+
+The current repository contains:
+
+```text
+doc/TASKS/task_template.md
+```
+
+Current role:
+
+```text
+standard developer-directive shape for future task/rung files
+```
+
+Current reality:
+
+```text
+task/rung template now exists
+future task packets should be derived from this template unless a human project owner explicitly authorizes otherwise
+the template defines expected sections for purpose, authority, ladder position, mode, branch rules, allowed files, protected files, forbidden scope, required work, non-claims, acceptance commands, review requirements, commit rules, stop conditions, final report, and success definition
+```
+
+Non-claims:
+
+```text
+doc/TASKS/task_template.md does not authorize implementation by itself
+doc/TASKS/task_template.md does not make historical tasks current
+doc/TASKS/task_template.md does not replace active task/rung packets
+```
+
+---
+
+## 6. Current Implementation Baseline
 
 The current implementation baseline is the existing deterministic simulation spine.
 
@@ -216,7 +275,7 @@ the current simulation spine is not physical-board ready
 
 ---
 
-## 6. Current Build and Control Files
+## 7. Current Build and Control Files
 
 The current visible build/control entry point is:
 
@@ -263,7 +322,7 @@ The tuple model belongs to later structure-migration rungs.
 
 ---
 
-## 7. Current Container and Environment Files
+## 8. Current Container and Environment Files
 
 The current container and environment files are:
 
@@ -314,7 +373,7 @@ the container workflow does not prove physical-board readiness
 
 ---
 
-## 8. Current Test and Verification Files
+## 9. Current Test and Verification Files
 
 The current test entry point is:
 
@@ -364,7 +423,7 @@ The first formal verification record belongs to a later rung.
 
 ---
 
-## 9. Current Documentation Files
+## 10. Current Documentation Files
 
 Current root/project documentation:
 
@@ -404,7 +463,7 @@ README.md is not the active task authority
 
 ---
 
-## 10. Current Frozen Architecture Documents
+## 11. Current Frozen Architecture Documents
 
 The current frozen architecture/policy documents are:
 
@@ -442,7 +501,7 @@ existence of these documents does not mean a real core lift has started
 
 ---
 
-## 11. Current Process Documents
+## 12. Current Process Documents
 
 The current process document state is:
 
@@ -480,35 +539,33 @@ doc/process/code_review.md does not replace active task/rung files
 
 ---
 
-## 12. Current Missing Planned Documents
+## 13. Current Missing Planned Documents
 
 The current document system references files that are planned but not yet complete.
 
 Known planned documents include:
 
 ```text
-doc/TASKS/task_template.md
 doc/VERIFICATION/<rung>.md
 ```
 
 Current treatment:
 
 ```text
-these files are expected by the document system
-they should be created in future rungs
-they should not be assumed to exist until they are committed
+formal verification records are expected by the document system
+verification records should be created in future rungs
+verification records should not be assumed to exist until they are committed
 ```
 
 Non-claims:
 
 ```text
-task/rung template is not yet fully defined in the new document system
 formal verification records do not yet exist under doc/VERIFICATION/
 ```
 
 ---
 
-## 13. What Is Currently Proven
+## 14. What Is Currently Proven
 
 The current repo proves, at most:
 
@@ -518,8 +575,8 @@ the simulation can produce an observable build artifact
 the repo has a Docker-oriented development environment
 the repo has Make/script entry points for current smoke verification
 the repo has a golden hash file for the current frame artifact
-the project now has a root design statement, roadmap, bringup ladder, and source-of-truth map
-the project now has agent workflow and code review procedure documents
+the project now has a root design statement, roadmap, bringup ladder, source-of-truth map, and reconciled AGENTS.md
+the project now has agent workflow, code review procedure, and task template documents
 the project has frozen long-term structure and core-lift policy documents
 ```
 
@@ -527,7 +584,7 @@ This is the current baseline.
 
 ---
 
-## 14. What Is Not Currently Proven
+## 15. What Is Not Currently Proven
 
 The current repo does not yet prove:
 
@@ -547,26 +604,30 @@ multi-ecosystem support
 multi-board support
 formal verification records under doc/VERIFICATION/
 fully reconciled historical task files
-fully updated AGENTS.md authority alignment
-completed task/rung template under doc/TASKS/task_template.md
 ```
 
 These items belong to later rungs.
 
 ---
 
-## 15. Current Next Position
+## 16. Current Next Position
 
 According to the bringup ladder, after this refresh the project is positioned to begin:
 
 ```text
-Rung 4: Task/Rung Template
+Rung 5: Existing Simulation Spine Verification Record
 ```
 
-The next planned file is:
+The next planned file is a formal verification record under:
 
 ```text
-doc/TASKS/task_template.md
+doc/VERIFICATION/
+```
+
+A likely filename is:
+
+```text
+doc/VERIFICATION/rung5_existing_simulation_spine.md
 ```
 
 This source-of-truth map does not itself start that work.
@@ -575,11 +636,12 @@ A future active task/rung file or explicit human instruction must authorize that
 
 ---
 
-## 16. Conflict Rule
+## 17. Conflict Rule
 
 If this source-of-truth map conflicts with:
 
 ```text
+AGENTS.md
 doc/master_design_statement.md
 doc/ROADMAP.md
 doc/bringup_ladder.md
@@ -587,16 +649,17 @@ doc/multi_core_structure.md
 doc/core_lift_sim_contract.md
 doc/process/agent_workflow.md
 doc/process/code_review.md
+doc/TASKS/task_template.md
 ```
 
 stop and resolve the conflict explicitly.
 
 Do not silently reinterpret authority documents.
 
-Do not use this map to override higher-authority design, roadmap, ladder, structure, core-lift, or process documents.
+Do not use this map to override higher-authority design, roadmap, ladder, structure, core-lift, process, agent, or task-template documents.
 
 ---
 
-## 17. One-Sentence Summary
+## 18. One-Sentence Summary
 
-The current Mistable repo truth is a working deterministic simulation spine plus an established design/roadmap/ladder/source-of-truth/agent-workflow/code-review authority system, with historical task files, older agent rules, task template, and formal verification records pending later reconciliation or creation.
+The current Mistable repo truth is a working deterministic simulation spine plus an established design/roadmap/ladder/source-of-truth/agent-workflow/code-review/task-template/agent-rules authority system, with historical task files and formal verification records pending later reconciliation or creation.
