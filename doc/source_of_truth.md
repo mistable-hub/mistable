@@ -205,23 +205,28 @@ The current verification records under:
 Current known verification files:
 
     doc/VERIFICATION/document_control_stack_baseline.md
+    doc/VERIFICATION/rung5.md
 
-Current role:
+Current roles:
 
-    documentation-only baseline record confirming the document-control stack
-    is present, role-consistent, and ready to govern future work
+    doc/VERIFICATION/document_control_stack_baseline.md
+        documentation-only baseline record confirming the document-control stack
+        is present, role-consistent, and ready to govern future work
+
+    doc/VERIFICATION/rung5.md
+        formal Rung 5 verification record for the existing deterministic simulation spine
+        records branch, HEAD, commands run, artifact info, golden hash comparison,
+        what is proven, what is not proven, and next safe candidate
 
 Current reality:
 
-    doc/VERIFICATION/ is no longer empty
+    doc/VERIFICATION/ contains two records
     document_control_stack_baseline.md is a documentation-only record
-    it does not verify the simulation spine
-    it does not satisfy Rung 5
-    formal simulation spine verification belongs to Rung 5
+    rung5.md is the formal simulation spine verification record
+    Rung 5 is complete
 
 Non-claims:
 
-    doc/VERIFICATION/document_control_stack_baseline.md does not satisfy Rung 5
     doc/VERIFICATION/document_control_stack_baseline.md does not verify RTL behavior
     doc/VERIFICATION/document_control_stack_baseline.md does not verify make sim
     doc/VERIFICATION/document_control_stack_baseline.md does not verify scripts/test.sh
@@ -489,15 +494,17 @@ Non-claims:
 
 The current document system no longer has missing planned documents in the core stack.
 
-The only remaining planned items are future verification records:
+The current document system has no missing planned documents in the core stack.
 
-    doc/VERIFICATION/rung5_existing_simulation_spine.md
-        Not yet created.
-        Will be created when Rung 5 is executed.
+All planned verification records through Rung 5 now exist:
 
-Non-claims:
+    doc/VERIFICATION/document_control_stack_baseline.md
+        exists — document-control stack baseline
 
-    Rung 5 simulation spine verification record does not yet exist
+    doc/VERIFICATION/rung5.md
+        exists — formal Rung 5 simulation spine verification record
+
+Future verification records will be created as later rungs are executed.
 
 ---
 
@@ -516,7 +523,9 @@ The current repo proves, at most:
     the project has frozen long-term structure and core-lift policy documents
     the document-control stack is present and role-consistent per
     doc/VERIFICATION/document_control_stack_baseline.md
-    Rungs 0 through 4 are complete
+    the existing deterministic simulation spine is formally verified per
+    doc/VERIFICATION/rung5.md
+    Rungs 0 through 5 are complete
 
 This is the current baseline.
 
@@ -526,7 +535,6 @@ This is the current baseline.
 
 The current repo does not yet prove:
 
-    simulation spine formally verified under Rung 5
     full virtual board behavior
     working monitor behavior
     bounded service/event transport
@@ -548,15 +556,11 @@ These items belong to later rungs.
 
 ## 17. Current Next Position
 
-Rungs 0 through 4 are complete.
+Rungs 0 through 5 are complete.
 
 The next active work is:
 
-    Rung 5: Existing Simulation Spine Verification Record
-
-The next planned file is:
-
-    doc/VERIFICATION/rung5_existing_simulation_spine.md
+    Rung 6: Repository Structure Migration Planning
 
 This source-of-truth map does not itself start that work.
 
@@ -591,6 +595,6 @@ core-lift, process, agent, or task-template documents.
 
 The current Mistable repo truth is a working deterministic simulation spine plus a
 complete document-control authority system covering design identity, roadmap, bringup
-ladder, agent rules, workflow, review, task template, and a documentation baseline
-verification record, with Rungs 0-4 complete and Rung 5 simulation spine verification
+ladder, agent rules, workflow, review, task template, and verification records through
+Rung 5, with Rungs 0-5 complete and Rung 6 repository structure migration planning
 as the next active work.
