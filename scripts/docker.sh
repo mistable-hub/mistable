@@ -60,14 +60,14 @@ docker_args+=(
   -w /work
 )
 
-# Mount host ~/.claude config if it exists (for Claude Code authentication)
+# Mount host ~/.claude directory if it exists
 if [[ -d "$host_home/.claude" ]]; then
   docker_args+=(-v "$host_home/.claude:$host_home/.claude")
 fi
 
-# Pass ANTHROPIC_API_KEY through if set on host
-if [[ -n "${ANTHROPIC_API_KEY:-}" ]]; then
-  docker_args+=(-e ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY}")
+# Mount host ~/.claude.json if it exists
+if [[ -f "$host_home/.claude.json" ]]; then
+  docker_args+=(-v "$host_home/.claude.json:$host_home/.claude.json")
 fi
 
 if [[ "$#" -eq 1 && "$1" == "bash" ]]; then
