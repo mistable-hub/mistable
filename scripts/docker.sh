@@ -60,6 +60,16 @@ docker_args+=(
   -w /work
 )
 
+# Mount host ~/.claude config if it exists (for Claude Code authentication)
+if [[ -d "$host_home/.claude" ]]; then
+  docker_args+=(-v "$host_home/.claude:$host_home/.claude")
+fi
+
+# Pass ANTHROPIC_API_KEY through if set on host
+if [[ -n "${ANTHROPIC_API_KEY:-}" ]]; then
+  docker_args+=(-e ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY}")
+fi
+
 if [[ "$#" -eq 1 && "$1" == "bash" ]]; then
   exec docker "${docker_args[@]}" "$image_name" bash --rcfile /work/scripts/bashrc -i
 fi
