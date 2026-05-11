@@ -297,8 +297,6 @@ Rung 6: Repository Structure Migration Planning
 
 Per `doc/bringup_ladder.md`, Rung 6 plans how the current minimal/pre-structural repo will move toward the frozen multi-core structure defined in `doc/multi_core_structure.md`.
 
-Additionally, `doc/source_of_truth.md` section 14 names the Rung 5 verification record as `doc/VERIFICATION/rung5_existing_simulation_spine.md`. The file created here is `doc/VERIFICATION/rung5.md`. A future source-of-truth refresh (authorized as a separate task) should reconcile this naming difference.
-
 ---
 
 ## 12. Final Status
